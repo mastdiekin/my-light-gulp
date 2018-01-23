@@ -11,6 +11,7 @@ var autoprefixer       = require('gulp-autoprefixer');
 var concat             = require('gulp-concat');
 var rename             = require('gulp-rename');
 var cssnano            = require('gulp-cssnano');
+var csso               = require('postcss-csso');
 
 //Сортировка медиа запросов
 function isMax(mq) {
@@ -49,7 +50,8 @@ gulp.task('sass', function(){
 		.pipe(postcss([
 			mqpacker({
 				sort: sortMediaQueries
-			})
+			}),
+			csso
 		]).on('error', reportError))
 		.pipe(gulp.dest(config.dist.styles))
 		.pipe(server.reload({stream: true}));
