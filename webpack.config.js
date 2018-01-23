@@ -91,7 +91,7 @@ function createConfig(env) {
 						fix: true,
 						cache: true,
 						// ignorePattern: __dirname + '/app/js/src/'
-						// ignorePattern: __dirname + '/app/libs/'
+						ignorePattern: __dirname + '/app/libs/'
 					}
 				}, {
 					test: /\.js$/,
