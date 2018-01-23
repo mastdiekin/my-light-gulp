@@ -1,0 +1,35 @@
+$output-bourbon-deprecation-warnings: false
+@import bourbon
+@import src/_fonts
+@import src/_func
+// @import lib/slick
+
+$font: "Helvetica Neue",Arial,sans-serif
+$sans: 'Open Sans', sans-serif
+
+ol, ul
+	list-style: none
+
+blockquote, q
+	quotes: none
+
+blockquote:before, blockquote:after,
+q:before, q:after
+	content: ''
+	content: none
+
+table
+	border-collapse: collapse
+	border-spacing: 0
+
+html, body
+	height: 100%
+
+body
+	height: 100%
+	margin: 0
+	padding: 0
+	background: $bg
+	font-family: $sans
+
+@import src/_preloader

@@ -1,0 +1,25 @@
+@at-root {
+  @-ms-viewport { width: device-width; } // stylelint-disable-line at-rule-no-vendor-prefix
+}
+
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+@import "app/libs/bootstrap/scss/functions";
+@import "_bootstrap-variables";
+
+@import "app/libs/bootstrap/scss/mixins/breakpoints";
+@import "app/libs/bootstrap/scss/mixins/grid-framework";
+@import "app/libs/bootstrap/scss/mixins/grid";
+
+@import "app/libs/bootstrap/scss/grid";
+@import "app/libs/bootstrap/scss/utilities/display";
+@import "app/libs/bootstrap/scss/utilities/flex";
