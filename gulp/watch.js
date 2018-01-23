@@ -15,6 +15,8 @@ gulp.task('watch', ['webpack:watch', 'sass', 'bootstrap', 'nunjucks', 'images'],
 
 	gulp.watch(config.source.images + '/sprites/*.*', ['png-sprites']);
 
+	gulp.watch(config.source.images + '/icons/font/*.*', ['iconfont']);
+
 	gulp.watch(config.source.images + '/**/*.*', ['images']);
 
 	gulp.watch(config.source.fonts + '/*.*', ['copy:fonts']);

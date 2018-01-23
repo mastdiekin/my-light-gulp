@@ -11,6 +11,7 @@ function build(cb) {
 		'images',
 		'svg-sprites',
 		'png-sprites',
+		'iconfont',
 		'webpack',
 		'copy',
 		cb

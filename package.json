@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "description someproject",
   "scripts": {
-    "build": "gulp build --production",
-    "start": "gulp"
-  },
-  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Surkov Dmitriy",
@@ -30,6 +26,8 @@
     "gulp-consolidate": "^0.2.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-front-matter": "^1.3.0",
+    "gulp-iconfont": "^9.1.0",
+    "gulp-iconfont-css": "^2.1.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^4.1.0",
     "gulp-notify": "^3.2.0",

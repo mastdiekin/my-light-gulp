@@ -16,7 +16,7 @@ var spritesmith        = require("gulp.spritesmith"); //for png-sprites
 var gulpif             = require('gulp-if'); //for png-sprites
 
 gulp.task('images', function() {
-	return gulp.src([config.source.images +'/**/*', '!'+ config.source.images +'/svg/*.*', '!'+ config.source.images +'/sprites/*.*'])
+	return gulp.src([config.source.images +'/**/*', '!'+ config.source.images +'/svg/*.*', '!'+ config.source.images +'/icons/font/**/**.*', '!'+ config.source.images +'/sprites/*.*'])
 		.pipe(cache(imagemin([
 				// imagemin.gifsicle({interlaced: true}),
 				imagemin.jpegtran({progressive: true}),

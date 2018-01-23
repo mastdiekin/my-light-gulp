@@ -7,11 +7,14 @@ var config = {
 	env              : 'development',
 	production       : production,
 
+	fontName         : 'myfont',
 	source: {
 		root         : 'app',
 		pages        : 'app/pages',
 		sass         : 'app/sass',
+		sassRoot     : 'sass',
 		fonts        : 'app/fonts',
+		fontsRoot    : 'fonts',
 		js           : 'app/js',
 		images       : 'app/images',
 		imagesRoot   : 'images',

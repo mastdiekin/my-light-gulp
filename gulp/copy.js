@@ -24,6 +24,7 @@ gulp.task('copy', [
 	'images',
 	'svg-sprites',
 	'png-sprites',
+	'iconfont',
 	'copy:fonts',
 	'copy:libs',
 	'copy:jslibs'
