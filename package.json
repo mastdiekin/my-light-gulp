@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "description someproject",
   "scripts": {
+    "build": "gulp build --production",
+    "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Surkov Dmitriy",
