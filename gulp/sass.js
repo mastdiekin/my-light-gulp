@@ -15,7 +15,7 @@ var csso               = require('postcss-csso');
 
 var sassInheritance    = require('gulp-sass-inheritance'); //gulp-sass-inheritance
 var cached             = require('gulp-cached'); //gulp-sass-inheritance
-var gulpif             = require('gulp-if');
+var gulpif             = require('gulp-if'); //gulp-sass-inheritance. dont delete
 var filter             = require('gulp-filter'); //gulp-sass-inheritance
 
 //Сортировка медиа запросов
