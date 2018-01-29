@@ -13,6 +13,11 @@ var rename             = require('gulp-rename');
 var cssnano            = require('gulp-cssnano');
 var csso               = require('postcss-csso');
 
+var sassInheritance    = require('gulp-sass-inheritance'); //gulp-sass-inheritance
+var cached             = require('gulp-cached'); //gulp-sass-inheritance
+var gulpif             = require('gulp-if');
+var filter             = require('gulp-filter'); //gulp-sass-inheritance
+
 //Сортировка медиа запросов
 function isMax(mq) {
 	return /max-width/.test(mq);
@@ -40,7 +45,12 @@ function sortMediaQueries(a, b) {
 }
 
 gulp.task('sass', function(){
-	return gulp.src([config.source.sass + '/**/*.{sass,scss}','!'+ config.source.sass + '/**/bootstrap-theme.{sass,scss}', '!'+ config.source.sass + '/lib/_bootstrap-variables.{sass,scss}'])
+	return gulp.src(config.source.sass + '/**/*.{sass,scss}')
+		.pipe(gulpif(global.isWatching, cached('sass')))
+		.pipe(sassInheritance({dir: config.source.sass}))
+		.pipe(filter(function (file) {
+			return !/\/_/.test(file.path) || !/^_/.test(file.relative);
+		}))
 		// .pipe(wait(50))
 		.pipe(sass.sync({
 			outputStyle: config.production ? 'compact' : 'expanded',
@@ -53,27 +63,11 @@ gulp.task('sass', function(){
 			}),
 			csso
 		]).on('error', reportError))
+
 		.pipe(gulp.dest(config.dist.styles))
 		.pipe(server.reload({stream: true}));
 });
 
-gulp.task('bootstrap', function(){
-	return gulp.src([config.source.sass + '/**/bootstrap-theme.{sass,scss}', config.source.sass + '/lib/_bootstrap-variables.{sass,scss}'])
-		.pipe(wait(50))
-		.pipe(sass.sync({
-			includePaths: require('node-bourbon').with(config.source.sass)
-		}).on('error', reportError))
-		.pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
-		.pipe(postcss([
-			mqpacker({
-				sort: sortMediaQueries
-			})
-		]).on('error', reportError))
-		.pipe(concat('bootstrap.css'))
-		.pipe(cssnano({
-			reduceIdents: false
-		}))
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest(config.dist.styles +'/lib/'))
-		.pipe(server.reload({stream: true}));
+gulp.task('setWatch', function() { //gulp-sass-inheritance
+	global.isWatching = true;
 });

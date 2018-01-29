@@ -4,10 +4,8 @@ var config             = require('./config');
 var sass               = require('./sass');
 var runSequence        = require('run-sequence');
 
-gulp.task('watch', ['webpack:watch', 'sass', 'bootstrap', 'nunjucks', 'images'], function () {
-	gulp.watch(config.source.sass + '/**/*.{sass,scss}', ['sass']);
-
-	gulp.watch([config.source.sass + '/lib/bootstrap-theme.{sass,scss}', config.source.sass + '/lib/_bootstrap-variables.{sass,scss}'], ['bootstrap']);
+gulp.task('watch', ['setWatch', 'webpack:watch', 'sass', 'nunjucks', 'images'], function () {
+	gulp.watch(config.source.sass + '/**/*.{sass,scss}', ['setWatch', 'sass']);
 
 	gulp.watch(config.source.pages + '/**/*.html', ['nunjucks']);
 
