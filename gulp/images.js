@@ -14,6 +14,7 @@ var consolidate        = require('gulp-consolidate'); //for svg-sprites
 var rename             = require('gulp-rename');
 var spritesmith        = require("gulp.spritesmith"); //for png-sprites
 var gulpif             = require('gulp-if'); //for png-sprites
+var cache              = require('gulp-cache');
 
 gulp.task('images', function() {
 	return gulp.src([config.source.images +'/**/*', '!'+ config.source.images +'/svg/*.*', '!'+ config.source.images +'/icons/font/**/**.*', '!'+ config.source.images +'/sprites/*.*'])
@@ -88,3 +89,7 @@ gulp.task('png-sprites', function () {
 
 	return spriteData.pipe(gulpif('*.png', gulp.dest(config.source.images), gulp.dest(config.source.sass+ '/helpers/generated')));
 });
+
+gulp.task('clear', function (callback) {
+	return cache.clearAll();
+})
