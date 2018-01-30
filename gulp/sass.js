@@ -64,7 +64,8 @@ gulp.task('sass', function(){
 			mqpacker({
 				sort: sortMediaQueries
 			}),
-			config.production ? csso : require('precss')
+			// config.production ? csso : require('precss')
+			csso
 		]).on('error', reportError))
 		.pipe(config.production ? util.noop() : sourcemaps.write('../styles/maps'))
 		.pipe(gulp.dest(config.dist.styles))
