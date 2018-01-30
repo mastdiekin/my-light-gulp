@@ -3,9 +3,11 @@ var server             = require('./server');
 var gulp               = require('gulp');
 var sass               = require('gulp-sass');
 var wait               = require('gulp-wait');
+var sourcemaps         = require('gulp-sourcemaps');
 var reportError        = require('./helpers/handle-errors');
 var bourbon            = require('node-bourbon');
 var postcss            = require('gulp-postcss');
+var util               = require('gulp-util');
 var mqpacker           = require('css-mqpacker');
 var autoprefixer       = require('gulp-autoprefixer');
 var concat             = require('gulp-concat');
@@ -51,6 +53,7 @@ gulp.task('sass', function(){
 		.pipe(filter(function (file) {
 			return !/\/_/.test(file.path) || !/^_/.test(file.relative);
 		}))
+		.pipe(sourcemaps.init())
 		// .pipe(wait(50))
 		.pipe(sass.sync({
 			outputStyle: config.production ? 'compact' : 'expanded',
@@ -63,6 +66,7 @@ gulp.task('sass', function(){
 			}),
 			config.production ? csso : require('precss')
 		]).on('error', reportError))
+		.pipe(config.production ? util.noop() : sourcemaps.write('../styles/maps'))
 		.pipe(gulp.dest(config.dist.styles))
 		.pipe(server.reload({stream: true}));
 });
