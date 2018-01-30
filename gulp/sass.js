@@ -61,9 +61,8 @@ gulp.task('sass', function(){
 			mqpacker({
 				sort: sortMediaQueries
 			}),
-			csso
+			config.production ? csso : require('precss')
 		]).on('error', reportError))
-
 		.pipe(gulp.dest(config.dist.styles))
 		.pipe(server.reload({stream: true}));
 });
